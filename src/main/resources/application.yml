@@ -1,0 +1,29 @@
+server:
+  port: 8083
+
+spring:
+  datasource:
+    url: jdbc:mysql://10.37.129.4:3306/spring_boot_demo?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    schema: classpath:sql/import.sql
+
+
+mybatis:
+  mapper-locations: classpath:mybatis/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+
+# mybatis 打印sql语句
+logging:
+  level:
+    yummy.web.mapper: debug
