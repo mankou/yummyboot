@@ -40,19 +40,23 @@ $(document).ready(function(){
                 columns: [
                     {
                         field: 'id',
-                        title: 'id'
+                        title: 'id',
+                        sortable:true,
                     },
                     {
                         field: 'code',
-                        title: '编码'
+                        title: '编码',
+                        sortable:true,
                     },
                     {
                         field: 'name',
-                        title: '姓名'
+                        title: '姓名',
+                        sortable:true,
                     },
                     {
                         field: 'createDate',
-                        title: '创建时间'
+                        title: '创建时间',
+                        sortable:true,
                     }
                 ],
             });
