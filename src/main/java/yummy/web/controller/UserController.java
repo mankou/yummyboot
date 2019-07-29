@@ -1,6 +1,8 @@
 package yummy.web.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.sky.blue.web.JsonResult;
+import com.sky.blue.web.JsonResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,9 +32,9 @@ public class UserController {
 	 * 演示分页查询写法
 	 * */
 	@RequestMapping(value = "/selectByNameByPage",method=RequestMethod.GET)
-	public PageInfo selectByNameByPage(String name,Integer pageNum,Integer pageSize){
+	public JsonResult selectByNameByPage(String name,Integer pageNum,Integer pageSize){
 		PageInfo<User> pageInfo=userService.selectByNameByPage(name,pageNum,pageSize);
-		return pageInfo;
+		return JsonResultUtil.createSuccessResult(pageInfo);
 	}
 
 
@@ -42,8 +44,9 @@ public class UserController {
 	 * */
 	//http://127.0.0.1:8083/user/selectAll
 	@RequestMapping(value="selectAll")
-	public List<User> selectAll(){
-		return userService.selectAll();
+	public JsonResult selectAll(){
+		List<User> list= userService.selectAll();
+		return JsonResultUtil.createSuccessResult(list);
 	}
 
 
