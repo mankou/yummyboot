@@ -1,7 +1,6 @@
 $(document).ready(function(){
-    alert('hello');
-
-    var url = "/helloJson/getDate";
+   console.log('hello12');
+    var url = "/helloJson/queryUser";
     $.ajax({
         url: url,
         // data: data,
@@ -10,7 +9,9 @@ $(document).ready(function(){
         async: true,
         type: "GET",
         success: function (result) {
-           $('.result').text(result);
+            console.log(JSON.stringify(result));
+            var resultStr=JSON.stringify(result)
+           $('.result').text(resultStr);
         },
         error: function (msg) {
             alert("查询异常");
