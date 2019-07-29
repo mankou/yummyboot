@@ -1,6 +1,9 @@
 package yummy.web.controller;
 
+import com.sky.blue.web.JsonResult;
+import com.sky.blue.web.JsonResultUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import yummy.web.entity.User;
 
@@ -18,8 +21,8 @@ public class HelloJsonController {
 	}
 
 
-	@RequestMapping(value = "/queryUser")
-	public List<User> queryUser() {
+	@RequestMapping(value = "/queryUser",method = RequestMethod.GET)
+	public JsonResult queryUser() {
 		List<User> list=new ArrayList<>();
 
 		User user=new User();
@@ -32,8 +35,11 @@ public class HelloJsonController {
 
 		list.add(user);
 		list.add(user2);
+//		return list;
 
-		return list;
+		return JsonResultUtil.createSuccessResult(list);
+
+
 	}
 
 
