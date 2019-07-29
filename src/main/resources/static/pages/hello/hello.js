@@ -12,6 +12,7 @@ $(document).ready(function(){
                 async: true,
                 type: "GET",
                 success: function (result) {
+                    console.log("后台返回结果:"+JSON.stringify(result));
                     var status=result.STATUS;
                     if(status=='0000'){
                         var data=result.DATA;
