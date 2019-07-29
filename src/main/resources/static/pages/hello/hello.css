@@ -6,4 +6,9 @@
 .radius_table th {
     background-color: #F5F5F5;
     border-top: none;
+    text-align: center
+}
+
+.radius_table td {
+    text-align: center
 }
