@@ -1,4 +1,4 @@
-package yummy.web.entity;
+package yummy.boot.entity;
 
 import lombok.Data;
 

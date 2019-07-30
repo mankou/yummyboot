@@ -1,4 +1,4 @@
-package yummy.web.entity;
+package yummy.boot.entity;
 
 import java.util.ArrayList;
 import java.util.Date;

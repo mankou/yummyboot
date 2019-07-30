@@ -1,4 +1,4 @@
-package yummy.web;
+package yummy.boot;
 
 import org.junit.ClassRule;
 import org.junit.Test;

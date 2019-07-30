@@ -1,6 +1,6 @@
-package yummy.web.mapper;
+package yummy.boot.mapper;
 
-import yummy.web.entity.User;
+import yummy.boot.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 

@@ -1,11 +1,11 @@
-package yummy.web.controller;
+package yummy.boot.controller;
 
 import com.sky.blue.web.JsonResult;
 import com.sky.blue.web.JsonResultUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import yummy.web.entity.User;
+import yummy.boot.entity.User;
 
 import java.util.ArrayList;
 import java.util.Date;

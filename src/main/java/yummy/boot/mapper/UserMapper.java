@@ -1,11 +1,11 @@
-package yummy.web.mapper;
+package yummy.boot.mapper;
 
 import java.util.List;
 
-import yummy.web.entity.User;
+import yummy.boot.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import yummy.web.entity.UserExample;
+import yummy.boot.entity.UserExample;
 
 @Mapper
 public interface UserMapper {

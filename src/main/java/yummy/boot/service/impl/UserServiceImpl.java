@@ -1,15 +1,15 @@
-package yummy.web.service.impl;
+package yummy.boot.service.impl;
 
 import java.util.Date;
 import java.util.List;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import yummy.web.entity.User;
-import yummy.web.entity.UserExample;
-import yummy.web.mapper.UserMapper;
-import yummy.web.mapper.UserMapper2;
-import yummy.web.service.UserService;
+import yummy.boot.entity.User;
+import yummy.boot.entity.UserExample;
+import yummy.boot.mapper.UserMapper;
+import yummy.boot.mapper.UserMapper2;
+import yummy.boot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

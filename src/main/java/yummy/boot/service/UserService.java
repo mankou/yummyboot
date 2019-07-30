@@ -1,7 +1,7 @@
-package yummy.web.service;
+package yummy.boot.service;
 
 import com.github.pagehelper.PageInfo;
-import yummy.web.entity.User;
+import yummy.boot.entity.User;
 
 import java.util.List;
 

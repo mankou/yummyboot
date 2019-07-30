@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>yummy</groupId>
-    <artifactId>yummyweb</artifactId>
+    <artifactId>yummyboot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>yummyweb</name>
+    <name>yummyboot</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>

@@ -1,4 +1,4 @@
-package yummy.web.controller;
+package yummy.boot.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.sky.blue.web.JsonResult;
@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import yummy.web.entity.User;
-import yummy.web.service.UserService;
+import yummy.boot.entity.User;
+import yummy.boot.service.UserService;
 
 import java.util.List;
 
