@@ -3,20 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../asset/css/bootstrap-4.0.0.css">
-    <link rel="stylesheet" href="../../asset/css/bootstrap-table.css">
+    <link rel="stylesheet" href="../../assets/css/bootstrap-4.0.0.css">
+    <link rel="stylesheet" href="../../assets/css/bootstrap-table.css">
     <link rel="stylesheet" href="hello.css">
     <title>Title</title>
 </head>
 <body>
-    <div class="warp">
-        hello yummy 12
-        <table id="table1" class="radius_table"></table>
+    <div class="container">
+            <div class="query-condition">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="userName" placeholder="姓名">
+                        <button type="button" class="btn btn-primary" id="btn-userQuery">查询</button>
+                    </div>
+                </form>
+            </div>
+            <div class="query-result">
+                <table id="table1" class="radius_table"></table>
+            </div>
+
     </div>
 </body>
 
-<script src="../../asset/js/jquery-3.2.1.js"></script>
-<script src="../../asset/js/bootstrap-4.0.0.js"></script>
-<script src="../../asset/js/bootstrap-table.js"></script>
+<script src="../../assets/js/jquery-3.2.1.js"></script>
+<script src="../../assets/js/bootstrap-4.0.0.js"></script>
+<script src="../../assets/js/bootstrap-table.js"></script>
 <script src="hello.js"></script>
 </html>

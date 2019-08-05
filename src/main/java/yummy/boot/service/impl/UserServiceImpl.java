@@ -1,7 +1,9 @@
 package yummy.boot.service.impl;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -49,8 +51,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> selectAll() {
-		return userMapper2.selectAll();
+	public List<User> queryUser() {
+		Map m= new HashMap();
+		return userMapper2.queryUser(m);
 	}
 
+	@Override
+	public List queryUserByUserName(String userName) {
+		Map m= new HashMap();
+		m.put("userName",userName);
+		return userMapper2.queryUser(m);
+	}
 }

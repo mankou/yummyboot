@@ -11,5 +11,7 @@ public interface UserService {
 	PageInfo<User> selectByNameByPage(String name,Integer pageNum,Integer pageSize);
 
 
-	List<User> selectAll();
+	List  queryUser();
+
+	List queryUserByUserName(String userName);
 }

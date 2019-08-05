@@ -6,6 +6,7 @@ import com.sky.blue.web.JsonResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import yummy.boot.entity.User;
 import yummy.boot.service.UserService;
@@ -38,14 +39,18 @@ public class UserController {
 	}
 
 
-	/**
-	 * 演示xml方式与注解方式共存
-	 * 即使在xml的工程中也能使用注解的方式使用mybatis
-	 * */
-	//http://127.0.0.1:8083/user/selectAll
-	@RequestMapping(value="selectAll")
-	public JsonResult selectAll(){
-		List<User> list= userService.selectAll();
+
+	//http://127.0.0.1:8083/user/queryUser
+	@RequestMapping(value="queryUser")
+	public JsonResult queryUser(){
+		List<User> list= userService.queryUser();
+		return JsonResultUtil.createSuccessResult(list);
+	}
+
+	//http://127.0.0.1:8083/user/queryUserByUserName
+	@RequestMapping(value="queryUserByUserName")
+	public JsonResult queryUserByUserName(@RequestParam("userName") String userName){
+		List<User> list= userService.queryUserByUserName(userName);
 		return JsonResultUtil.createSuccessResult(list);
 	}
 
