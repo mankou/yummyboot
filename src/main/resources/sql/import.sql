@@ -20,9 +20,9 @@ CREATE TABLE `tb_user` (
 
 
 INSERT INTO tb_user(CODE,NAME,create_date) VALUES('xx1','maning',NOW());
-INSERT INTO tb_user(CODE,NAME,create_date) VALUES('xx2','maning',NOW());
-INSERT INTO tb_user(CODE,NAME,create_date) VALUES('xx3','maning',NOW());
-INSERT INTO tb_user(CODE,NAME,create_date) VALUES('xx4','maning',NOW());
-INSERT INTO tb_user(CODE,NAME,create_date) VALUES('xx5','maning',NOW());
-INSERT INTO tb_user(CODE,NAME,create_date) VALUES('xx6','maning',NOW());
+INSERT INTO tb_user(CODE,NAME,create_date) VALUES('xx2','张三',NOW());
+INSERT INTO tb_user(CODE,NAME,create_date) VALUES('xx3','王五',NOW());
+INSERT INTO tb_user(CODE,NAME,create_date) VALUES('xx4','max',NOW());
+INSERT INTO tb_user(CODE,NAME,create_date) VALUES('xx5','王七',NOW());
+INSERT INTO tb_user(CODE,NAME,create_date) VALUES('xx6','李四',NOW());
 
