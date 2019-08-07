@@ -11,5 +11,5 @@
  * 在application.yml中配置数据库连接串
  * 运行 App.java
  * 在浏览器访问如下地址 查看样例页面
- http://127.0.0.1:8080/yummymvc-web/pages/hello/hello.html
+ http://127.0.0.1:8083/pages/hello/hello.html
 
