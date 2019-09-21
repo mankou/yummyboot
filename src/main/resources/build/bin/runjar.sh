@@ -18,9 +18,10 @@ author=man003@163.com
 version=V1-20190918
 
 ############配置区域##################
+# 建议在 config/env 文件中配置,不要直接该脚本中修改
 
 # jar包名 
-jarName=fuboot-0.0.1-SNAPSHOT.jar
+jarName=xx.jar
 
 # 延迟启动多少秒
 # 之所以要延迟启动,是因为程序有可能配置开机自启动,此时机器有可能还没有连上网,所以等一段时间再启动
@@ -28,7 +29,7 @@ delaySeconds=0
 
 
 #specify JAVA_HOME
-#JAVA_HOME=
+#JAVA_HOME=/home/dw/fuboot/jdk/jdk1.8.0_91
 
 ####################################
 
@@ -37,10 +38,11 @@ usage() {
  cat <<EOM
 DESC: run java jar program
 Usage: $SHELL_NAME parameters
-  start [extra_opts]            |start program
-  stop                          |stop program
-  status                        |show program status
-  restart                       |restart program
+    start [extra_opts]            |start program
+    stop                          |stop program
+    status                        |show program status
+    restart                       |restart program
+    show                          |show env
 EOM
 }
 
@@ -55,22 +57,27 @@ SHELL_DIR_PATH=$(cd $(dirname "$0");pwd)
 BASE_PATH=`dirname $SHELL_DIR_PATH`;
 SHELL_NAME=`basename $0`
 SHELL_ABSOLUTE_PATH=$SHELL_DIR_PATH/$SHELL_NAME
+CONFIG_PATH=$BASE_PATH/config
+
+
+# 初始化配置
+[ -f $CONFIG_PATH/env  ] && . $CONFIG_PATH/env
+
 
 jarAbsolutePath=$BASE_PATH/lib/$jarName
-
 PID_DIR=/tmp
 [ -w $PID_DIR ] || mkdir -p $PID_DIR
 PID_FILE=$PID_DIR/$jarName.pid
-
 NOHUP_FILE=$BASE_PATH/nohup.out
 
 
 # Which java to use
 if [ -z "$JAVA_HOME" ]; then
-  JAVA="java"
+  JAVA=`which java`
 else
   JAVA="$JAVA_HOME/bin/java"
 fi
+
 
 # jvm相关路径
 JVM_CONFIG=$BASE_PATH/config/jvm.config
@@ -91,13 +98,12 @@ function start {
         echo "wait for $delaySeconds s"
         sleep $delaySeconds
         echo "start ..."
-        echo "java $JVM_OPT  -jar $jarAbsolutePath $EXTRA_OPTS"
-        nohup java $JVM_OPT  -jar $jarAbsolutePath $EXTRA_OPTS  &
+        echo "$JAVA $JVM_OPT  -jar $jarAbsolutePath $EXTRA_OPTS"
+        nohup $JAVA $JVM_OPT  -jar $jarAbsolutePath $EXTRA_OPTS  &
         pid=$!
         echo $pid>$PID_FILE
         echo started pid $pid
     fi
-    exit $?
 }
 
 function stop {
@@ -110,9 +116,7 @@ function stop {
         echo `date  +"%Y-%m-%d %H:%M:%S"` killed process $pid >>$NOHUP_FILE
     else
         echo "$PID_FILE does not exist, process is not running"
-        exit -1
     fi
-    exit $?
 }
 
 function status {
@@ -131,15 +135,27 @@ function status {
 }
 
 function restart {
-    $SHELL_ABSOLUTE_PATH stop
-    $SHELL_ABSOLUTE_PATH start
+    #$SHELL_ABSOLUTE_PATH stop
+    #$SHELL_ABSOLUTE_PATH start
+    stop
+    echo
+    start
 }
 
-case "$1" in
+function show {
+    echo "java: $JAVA"
+    echo "jarName: $jarName"
+    echo "delaySeconds: $delaySeconds"
+}
+
+
+para1=$1
+shift
+EXTRA_OPTS="$@"
+
+case "$para1" in
   start)
 # 把第1个参数start过掉, 然后把后面的参数保存下来,执行java命令时传过去,有可能输入 ./runjar.sh start --spring.profiles.active=dev 这样的命令
-        shift
-        EXTRA_OPTS="$@"
         start
         ;;
   stop)
@@ -149,7 +165,10 @@ case "$1" in
         status
         ;;
   restart)
-      restart
+        restart
+        ;;
+  show)
+      show
       ;;
   *)
         usage
