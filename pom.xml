@@ -114,7 +114,8 @@
                         </goals>
                         <configuration>
                             <descriptors> <!--描述文件路径 -->
-                                <descriptor>src/main/resources/build/assembly/assembly-springboot.xml</descriptor>
+                                <descriptor>src/main/resources/build/assembly/assembly-springboot-dev.xml</descriptor>
+                                <descriptor>src/main/resources/build/assembly/assembly-springboot-pro.xml</descriptor>
                             </descriptors>
                         </configuration>
                     </execution>

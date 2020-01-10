@@ -2,20 +2,11 @@
 # name runjar.sh
 # desc 运行jar包的脚本
 # create by m-ning at 2017-04-22 13:26:18
-# last modify by man003@163.com at 2019-09-18
-
-# 特别要注意部署时的目录结构,runjar.sh必须在bin目录下,各种jar包必须在lib目录下 即使只有一个jar包也必须放在lib目录下
-#├── bin
-#│   └── runjar.sh
-#├── lib
-#│   └── xxx.jar
-#├── config 
-#│   └── jvm.config
-#└── nohup.out
+# last modify by man003@163.com at 2020-01-10
 
 
 author=man003@163.com
-version=V1-20190918
+version=V1.01-20200110
 
 ############配置区域##################
 # 建议在 config/env 文件中配置,不要直接该脚本中修改
@@ -31,6 +22,10 @@ delaySeconds=0
 #specify JAVA_HOME
 #JAVA_HOME=/home/dw/fuboot/jdk/jdk1.8.0_91
 
+
+# 配置nothup是否输出到nohup.out
+writeNohupLog=true
+
 ####################################
 
 
@@ -38,7 +33,7 @@ usage() {
  cat <<EOM
 DESC: run java jar program
 Usage: $SHELL_NAME parameters
-    start [extra_opts]            |start program
+    start [args]                  |start program
     stop                          |stop program
     status                        |show program status
     restart                       |restart program
@@ -65,9 +60,10 @@ CONFIG_PATH=$BASE_PATH/config
 
 
 jarAbsolutePath=$BASE_PATH/lib/$jarName
-PID_DIR=/tmp
-[ -w $PID_DIR ] || mkdir -p $PID_DIR
-PID_FILE=$PID_DIR/$jarName.pid
+#PID_DIR=/tmp
+#[ -w $PID_DIR ] || mkdir -p $PID_DIR
+#PID_FILE=$PID_DIR/$jarName.pid
+PID_FILE=$BASE_PATH/pid
 NOHUP_FILE=$BASE_PATH/nohup.out
 
 
@@ -86,6 +82,15 @@ then
     JVM_OPT=`cat $JVM_CONFIG |grep -v "^#" |xargs`
 fi
 
+
+#program 相关配置
+PROGRAM_CONFIG=$BASE_PATH/config/program.config
+if [ -e $PROGRAM_CONFIG ]
+then
+    PROGRAM_OPT=`cat $PROGRAM_CONFIG |grep -v "^#" |xargs`
+fi
+
+
 cd $BASE_PATH
 
 function start {
@@ -98,11 +103,19 @@ function start {
         echo "wait for $delaySeconds s"
         sleep $delaySeconds
         echo "start ..."
-        echo "$JAVA $JVM_OPT  -jar $jarAbsolutePath $EXTRA_OPTS"
-        nohup $JAVA $JVM_OPT  -jar $jarAbsolutePath $EXTRA_OPTS  &
+        echo "$JAVA $JVM_OPT  -jar $jarAbsolutePath $ARGS $PROGRAM_OPT"
+        if [ "$writeNohupLog"x = "true"x ]
+        then
+            nohup $JAVA $JVM_OPT  -jar $jarAbsolutePath $ARGS  $PROGRAM_OPT &
+        else
+            echo "do not write log to nohup.out!"
+            nohup $JAVA $JVM_OPT  -jar $jarAbsolutePath $ARGS  $PROGRAM_OPT >/dev/null 2>>$NOHUP_FILE &
+            #nohup $JAVA $JVM_OPT  -jar $jarAbsolutePath $ARGS  $PROGRAM_OPT >/dev/null 2>&1 &
+        fi
         pid=$!
         echo $pid>$PID_FILE
         echo started pid $pid
+        echo `date  +"%Y-%m-%d %H:%M:%S"` started process $pid >>$NOHUP_FILE
     fi
 }
 
@@ -151,7 +164,7 @@ function show {
 
 para1=$1
 shift
-EXTRA_OPTS="$@"
+ARGS="$@"
 
 case "$para1" in
   start)
