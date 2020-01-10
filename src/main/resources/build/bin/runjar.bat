@@ -2,7 +2,7 @@
 :: desc windows上启动jar包
 :: 开发的初衷是用于配合启动基于springboot的jar包
 :: create by maning at 2019-08-12
-:: last modify at 2019-08-12
+:: last modify at 2020-01-10
 :: mail man003@163.com
 :: version 1.0.1-20200110
 
