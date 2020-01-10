@@ -87,8 +87,8 @@
 
         <dependency>
             <groupId>com.sky.blue</groupId>
-            <artifactId>blue-web</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <artifactId>blue-web-spring-boot-starter</artifactId>
+            <version>1.0.1-SNAPSHOT</version>
         </dependency>
 
 
