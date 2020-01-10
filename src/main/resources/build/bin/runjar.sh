@@ -2,7 +2,7 @@
 # name runjar.sh
 # desc 运行jar包的脚本
 # create by maning at 2017-04-22 13:26:18
-# last modify by man003@163.com at 2020-01-10
+# last modify by maning at 2020-01-10
 # mail=man003@163.com
 # version=V1.01-20200110
 
