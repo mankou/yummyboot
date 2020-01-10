@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<!--获取springboot中的 ${spring.applicaiton.name} 日志名以该变量值命名 这是springboot与logback融合时独有的-->
+	<springProperty scope="context" name="applicationName" source="spring.application.name"  defaultValue="app"/>
+
+	<!-- 文件输出格式 -->
+	<property name="COLOR_PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) %highlight(%-5level) ${PID}  [%thread] %cyan(%logger{40} %M) [%L] %msg%n" />
+	<property name="FILE_PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) %-5level ${PID}  [%thread] %logger{40} %M [%L] %msg%n" />
+
+	<!--日志文件路径-->
+	<property name="FILE_PATH" value="logs" />
+
+	<!--日志文件名-->
+	<property name="LOG_FILE_NAME" value="${applicationName}" />
+
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${COLOR_PATTERN}</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 每天一个文件,保留20天的日志,所有日志文件总计不超过3GB -->
+	<appender name="ROLLING_FILE_TIME" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${FILE_PATH}/${LOG_FILE_NAME}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${FILE_PATH}/${LOG_FILE_NAME}.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<MaxHistory>20</MaxHistory>
+			<totalSizeCap>3GB</totalSizeCap>
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>${FILE_PATTERN}</pattern>
+		</layout>
+	</appender>
+
+
+	<!-- 每天一个文件 保留20天的日志 并且每个日志文件不超过100MB,所有日志文件总计不超过3GB 注意2个appender输出的日志文件名不能一样,否则会报错 所以这里加一个-size区分下 -->
+	<!--这里之所以注释掉是因为即使日志不使用该appender 其也会生成一个空日志文件 所以这里注释掉,如果以后用把这个appender的注解去掉 再把ROLLING_FILE_TIME注释掉-->
+	<!--<appender name="ROLLING_FILE_SizeAndTime" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+		<!--<file>${FILE_PATH}/${LOG_FILE_NAME}-size.log</file>-->
+		<!--<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">-->
+			<!--<fileNamePattern>${FILE_PATH}/${LOG_FILE_NAME}-size.%d{yyyy-MM-dd}.%i.log</fileNamePattern>-->
+			<!--<maxFileSize>100MB</maxFileSize>-->
+			<!--<maxHistory>20</maxHistory>-->
+			<!--<totalSizeCap>3GB</totalSizeCap>-->
+		<!--</rollingPolicy>-->
+		<!--<layout class="ch.qos.logback.classic.PatternLayout">-->
+			<!--<pattern>${FILE_PATTERN}</pattern>-->
+		<!--</layout>-->
+	<!--</appender>-->
+
+	<!-- 开发环境 -->
+	<springProfile name="dev,default">
+		<!--已试验 如下可单独设置某些包的日志级别 将其设置成debug 即使root的level是info 但该包的日志输出级别仍然是debug -->
+		<!--直接在springboot的application.yml的 logging.level 中设置包的日志级别也可以-->
+		<logger name="mang.demo.springboot" level="debug"/>
+
+		<!--开发环境只把日志输出到控制台,没有必要输出到文件里-->
+		<root level="info">
+			<appender-ref ref="CONSOLE" />
+			<!--<appender-ref ref="ROLLING_FILE_TIME" />-->
+			<!--<appender-ref ref="ROLLING_FILE_SizeAndTime" />-->
+		</root>
+	</springProfile>
+
+	<!-- 非开发环境 -->
+	<springProfile name="!dev">
+
+		<!--非开发环境需要把日志输出到文件里-->
+		<root level="info">
+			<appender-ref ref="CONSOLE" />
+			<appender-ref ref="ROLLING_FILE_TIME" />
+			<!--<appender-ref ref="ROLLING_FILE_SizeAndTime" />-->
+		</root>
+	</springProfile>
+
+</configuration>

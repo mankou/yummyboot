@@ -1,6 +1,8 @@
 spring:
   profiles:
     active: dev
+  application:
+    name: yummyboot
 
 server:
   port: 8083
@@ -20,5 +22,5 @@ pagehelper:
 # mybatis 打印sql语句
 logging:
   level:
-    yummy.web.mapper: debug
+    yummy.boot.mapper: debug
 
