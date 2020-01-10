@@ -10,3 +10,11 @@ set JAVA_OPTS=-Xms256m -Xmx512m -Dloader.path=lib
 ::设置一些程序参数
 set PROGRAM_CONFIG=--spring.profiles.active=pro
 
+
+::set JAVA_HOME=z:\work\workToolsWindows\java\jdk1.8.0_60_64
+::set PATH=%JAVA_HOME%\bin;%PATH%
+if not exist "%JAVA_HOME%"\bin\java.exe (
+  echo Error: JAVA_HOME is incorrectly set.
+  goto :eof
+)
+
