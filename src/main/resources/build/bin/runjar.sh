@@ -1,12 +1,10 @@
 #!/bin/sh
 # name runjar.sh
 # desc 运行jar包的脚本
-# create by m-ning at 2017-04-22 13:26:18
+# create by maning at 2017-04-22 13:26:18
 # last modify by man003@163.com at 2020-01-10
-
-
-author=man003@163.com
-version=V1.01-20200110
+# mail=man003@163.com
+# version=V1.01-20200110
 
 ############配置区域##################
 # 建议在 config/env 文件中配置,不要直接该脚本中修改
