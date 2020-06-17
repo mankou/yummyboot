@@ -3,6 +3,9 @@ spring:
     active: dev
   application:
     name: yummyboot
+  jackson:
+    time-zone: Asia/Chongqing
+    date-format: yyyy-MM-dd HH:mm:ss
 
 server:
   port: 8083

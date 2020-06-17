@@ -5,5 +5,3 @@ spring:
     password: root
     driver-class-name: com.mysql.jdbc.Driver
     schema: classpath:sql/import.sql
-  jackson:
-      date-format: yyyy-MM-dd HH:mm:ss
