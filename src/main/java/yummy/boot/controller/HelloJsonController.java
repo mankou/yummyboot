@@ -18,10 +18,23 @@ import java.util.Map;
 public class HelloJsonController {
 
 
+    /**
+     * 如果配置了 blue.web.warp-response-body:true 则会自动将结果包装成JsonResult类型
+     * */
 	@RequestMapping(value = "/getDate")
 	public Date getDate() {
 		return new Date();
 	}
+
+
+    /**
+     * 演示返回的数据是 String 格式
+     * */
+    @RequestMapping(value = "/testString",method = RequestMethod.GET)
+    public JsonResult testString() {
+        return JsonResultUtil.createSuccessResult("ok");
+
+    }
 
 
 	/**
@@ -89,6 +102,14 @@ public class HelloJsonController {
 		throw new ServiceException("501","服务端自定义异常",errMap);
 	}
 
+
+    /**
+     * 演示返回业务异常 这类异常是程序主动抛出的 这里data是String类型
+     * */
+    @RequestMapping(value = "/testServiceException2",method = RequestMethod.GET)
+    public JsonResult testServiceException2() {
+        throw new ServiceException("501","服务端自定义异常","这是一个错误信息");
+    }
 
 
 }
