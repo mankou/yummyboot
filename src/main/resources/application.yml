@@ -27,3 +27,9 @@ logging:
   level:
     yummy.boot.mapper: debug
 
+
+blue:
+  web:
+    warp-response-body: true
+    print-controller-log: true
+
