@@ -37,6 +37,18 @@ public class HelloJsonController {
     }
 
 
+    /**
+     * 演示返回的数据是 String 格式
+     * 注意 这种写法 如果使用自动包装返回类型 目前会报错
+     * 报错信息如下 java.lang.ClassCastException com.sky.blue.web.JsonResult cannot be cast to java.lang.String
+     * 目前的折中办法参见 testString() 主动返回JsonResult类型
+     * */
+    @RequestMapping(value = "/testString2",method = RequestMethod.GET)
+    public String testString2() {
+        return "hello";
+    }
+
+
 	/**
 	 * 演示返回的数据是 Map 格式
 	 * */
