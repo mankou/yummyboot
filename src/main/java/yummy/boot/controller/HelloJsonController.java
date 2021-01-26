@@ -40,8 +40,8 @@ public class HelloJsonController {
 	/**
 	 * 演示返回的数据是 Map 格式
 	 * */
-	@RequestMapping(value = "/sayHello",method = RequestMethod.GET)
-	public JsonResult sayHello() {
+	@RequestMapping(value = "/testMap",method = RequestMethod.GET)
+	public JsonResult testMap() {
 		Map resultMap= Maps.newLinkedHashMap();
 		resultMap.put("hello","word");
 		return JsonResultUtil.createSuccessResult(resultMap);
@@ -51,8 +51,8 @@ public class HelloJsonController {
 	/**
 	 * 演示返回的数据是一个List<Object> 的格式
 	 * */
-	@RequestMapping(value = "/queryList",method = RequestMethod.GET)
-	public JsonResult queryList() {
+	@RequestMapping(value = "/testList",method = RequestMethod.GET)
+	public JsonResult testList() {
 		List<TestObject> list=new ArrayList<>();
 
 		TestObject user=new TestObject();
@@ -71,7 +71,7 @@ public class HelloJsonController {
 	/**
 	 * 演示返回的数据是一个 Object 的格式
 	 * */
-	@RequestMapping(value = "/queryObject",method = RequestMethod.GET)
+	@RequestMapping(value = "/testObject",method = RequestMethod.GET)
 	public JsonResult queryObject() {
 		TestObject testObject=new TestObject();
 		testObject.setName("天空");
@@ -93,7 +93,7 @@ public class HelloJsonController {
 
 
 	/**
-	 * 演示返回业务异常 这类异常是程序主动抛出的
+	 * 演示返回业务异常 这类异常是程序主动抛出的 ServiceException
 	 * */
 	@RequestMapping(value = "/testServiceException",method = RequestMethod.GET)
 	public JsonResult testServiceException() {
