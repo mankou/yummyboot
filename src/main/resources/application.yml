@@ -14,6 +14,7 @@ mybatis:
   mapper-locations: classpath:mybatis/*.xml
   configuration:
     mapUnderscoreToCamelCase: true
+    call-setters-on-nulls: true
 
 pagehelper:
   helperDialect: mysql
