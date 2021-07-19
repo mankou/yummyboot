@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import lombok.RequiredArgsConstructor;
 import yummy.boot.entity.User;
 import yummy.boot.entity.UserExample;
 import yummy.boot.mapper.UserMapper;
@@ -17,12 +18,10 @@ import org.springframework.stereotype.Service;
 
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-	@Autowired
-	private UserMapper mapper;
-
-	@Autowired
-	private UserMapper2 userMapper2;
+	private final UserMapper mapper;
+	private final UserMapper2 userMapper2;
 	
 	@Override
 	public void insertSample() {
