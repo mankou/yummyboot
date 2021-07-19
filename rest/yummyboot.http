@@ -1,0 +1,12 @@
+# localhost
+# @IP=127.0.0.1:8083
+
+# vct60
+@IP=192.168.56.60:28083
+
+### helloJson
+GET http://{{IP}}/helloJson/testMap
+
+
+### helloJson
+GET http://{{IP}}/test/testQueryDb

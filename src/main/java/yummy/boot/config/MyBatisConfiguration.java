@@ -1,9 +1,26 @@
 package yummy.boot.config;
 
+import org.mybatis.spring.boot.autoconfigure.ConfigurationCustomizer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import snail.tools.frame.mate.mybatis.MapWrapperFactory;
 
 @Configuration
 public class MyBatisConfiguration {
+
+
+	/**
+	 * 配置返回Map的时候,将Map内的Key转换为驼峰式.
+	 * */
+	@Bean
+	public ConfigurationCustomizer mybatisConfigurationCustomizer(){
+		return new ConfigurationCustomizer() {
+			@Override
+			public void customize(org.apache.ibatis.session.Configuration configuration) {
+				configuration.setObjectWrapperFactory(new MapWrapperFactory());
+			}
+		};
+	}
 	
 	/*
 	@Bean

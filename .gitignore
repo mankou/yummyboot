@@ -1,13 +1,42 @@
+# maven
 target
+.class
+classes
+
+# log
+log
+logs
+*.log
+nohup.out
+
+# mac
+.DS_Store
+
+# idea
+.idea
+*.iml
+.env*
+
+# eclipse
 .settings
 .classpath
 .project
 .metadata
 RemoteSystemsTempFiles
-.class
-classes
-log
-logs
-.idea
-*.iml
-.DS_Store
+
+# maven
+.mvn
+
+# tomcat
+Servers
+
+# vim
+*.swp
+
+# python
+venv
+
+# vue
+node_modules
+/dist
+dist*.tar.gz
