@@ -1,7 +1,7 @@
 package yummy.boot.controller.test;
 
-import com.sky.blue.web.JsonResult;
-import com.sky.blue.web.JsonResultUtil;
+import com.skygroup.blue.web.JsonResult;
+import com.skygroup.blue.web.JsonResultUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

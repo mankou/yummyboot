@@ -1,8 +1,9 @@
 package yummy.boot.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.sky.blue.web.JsonResult;
-import com.sky.blue.web.JsonResultUtil;
+import com.skygroup.blue.web.JsonResult;
+import com.skygroup.blue.web.JsonResultUtil;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,10 +16,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/user")
+@RequiredArgsConstructor
 public class UserController {
 	
-	@Autowired
-	private UserService userService;
+	private final UserService userService;
 	
 	//http://127.0.0.1:8083/user/insert
 	@RequestMapping(value = "/insert")

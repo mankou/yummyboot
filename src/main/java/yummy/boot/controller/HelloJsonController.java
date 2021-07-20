@@ -1,9 +1,9 @@
 package yummy.boot.controller;
 
 import com.google.common.collect.Maps;
-import com.sky.blue.web.JsonResult;
-import com.sky.blue.web.JsonResultUtil;
-import com.sky.blue.web.ServiceException;
+import com.skygroup.blue.web.JsonResult;
+import com.skygroup.blue.web.JsonResultUtil;
+import com.skygroup.blue.web.ServiceException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
